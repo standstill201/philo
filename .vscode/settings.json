@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"minishell.h": "c",
+		"philosopher.h": "c",
+		"pthread.h": "c"
+	}
+}
