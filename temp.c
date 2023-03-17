@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   temp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 16:42:57 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/17 20:55:11 by seokjyoo         ###   ########.fr       */
+/*   Created: 2023/03/17 20:42:40 by seokjyoo          #+#    #+#             */
+/*   Updated: 2023/03/17 20:56:26 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/philosopher.h"
+#include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
 
-int	main(int argc, char *argv[])
+size_t    relative_time(size_t time_start)
 {
-	int				*forks;
-	pthread_mutex_t	*forks_mutex;
-	pthread_t		*philos;
-	t_common		*common;
-	t_philo			*philo;
+    struct timeval    current;
 
-	if (check_arg(argc, argv) == 1)
-		return (1);
-	common = set_common(argv);
-	philo = philo_set(common);
-	philo_start(philo, common);
-	return (0);
+    gettimeofday(&current, 0);
+    return (current.tv_sec * 1000 * 1000 + current.tv_usec - time_start);
 }
 
-// 1000
-// 1000000
+int main()
+{
+	size_t time_start;
+
+	time_start = relative_time(0);
+	usleep(100);
+	printf("%ld\n", relative_time(time_start));
+}
