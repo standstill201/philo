@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:42:40 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/17 20:56:26 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:53:58 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ size_t    relative_time(size_t time_start)
 
 int main()
 {
-	size_t time_start;
+    size_t    time_start;
+    struct timeval    current;
 
-	time_start = relative_time(0);
-	usleep(100);
-	printf("%ld\n", relative_time(time_start));
+    gettimeofday(&current, 0);
+    time_start = current.tv_sec * 1000 * 1000 + current.tv_usec;
+    printf("%ld\n", time_start);
+    printf("%ld\n", relative_time(time_start));
 }
+
+// 결과
+4,294,967,295
+1679133181340428

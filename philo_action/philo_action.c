@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:26:14 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/17 20:37:11 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:03:35 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,14 @@
 
 void	philo_eat(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(philo->left_fork_mutex);
-		printf("%d has taken a left fork\n", philo->id);
-		pthread_mutex_lock(philo->right_fork_mutex);
-		printf("%d has taken a right fork\n", philo->id);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->right_fork_mutex);
-		printf("%d has taken a right fork\n", philo->id);
-		pthread_mutex_lock(philo->left_fork_mutex);
-		printf("%d has taken a left fork\n", philo->id);
-	}
-	// philo->last_eat_time = get_time();
-	philo->eat_count++;
+	pthread_mutex_lock(philo->left_fork_mutex);
+	printf("%d has taken a left fork\n", philo->id);
+	pthread_mutex_lock(philo->right_fork_mutex);
+	printf("%d has taken a right fork\n", philo->id);
 	printf("%d is eating\n", philo->id);
+	philo->eat_count++;
 	usleep(philo->common->time_to_eat * 1000);
+	gettimeofday(&philo->last_eat_time, NULL);
 	pthread_mutex_unlock(philo->left_fork_mutex);
 	pthread_mutex_unlock(philo->right_fork_mutex);
 }
@@ -56,15 +46,21 @@ void	*philo_action(void *arg)
 	pthread_mutex_unlock(philo->common->init_m);
 	if(philo->id % 2 == 0)
 		usleep(300);
-	while (1)
+	while (philo->is_alive && philo->eat_count < philo->common->number_of_times)
 	{
 		philo_eat(philo);
+		if (philo->is_alive == 0)
+			break ;
 		philo_sleep(philo);
+		if (philo->is_alive == 0)
+			break ;
 		philo_think(philo);
 	}
+	printf("!!!!!!!!!!!!!!!!!!\n");
+	return (NULL);
 }
 
-void	philo_start(t_philo *philo, t_common *common)
+void	philo_start(t_philo *philo, t_common *common, int num_of_times)
 {
 	int				index;
 	pthread_mutex_t	init_m;
@@ -79,9 +75,13 @@ void	philo_start(t_philo *philo, t_common *common)
 		index++;
 	}
 	sleep(1);
+	gettimeofday(&common->start_time, NULL);
+	while (index--)
+		philo[index].last_eat_time = philo[index].common->start_time;
 	pthread_mutex_unlock(&init_m);
+	// main_thread_task(philo, common, num_of_times);
 	sleep(2);
 	pthread_mutex_destroy(&init_m);
-	while (index--)
-		pthread_join(philo[index].thread, NULL);
+	while (index < common->number_of_philo)
+		pthread_join(philo[index++].thread, NULL);
 }

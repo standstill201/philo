@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:34:41 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/17 20:37:15 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:46:51 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@ t_common	*set_common(char **argv)
 
 void	set_fork_mutex(t_philo *philo, int index)
 {
-	philo[index].left_fork_mutex = &philo[index].common->forks_mutex[index - 1];
 	if (index == 0)
 	{
 		philo[index].right_fork_mutex = &philo[index].common->forks_mutex[0];
 		philo[index].left_fork_mutex = &philo[index].common->forks_mutex[philo[index].common->number_of_philo - 1];
 	}
 	else
+	{
 		philo[index].right_fork_mutex = &philo[index].common->forks_mutex[index];
+		philo[index].left_fork_mutex = &philo[index].common->forks_mutex[index - 1];
+	}
 }
 
 t_philo	*philo_set(t_common *common)
@@ -62,8 +64,8 @@ t_philo	*philo_set(t_common *common)
 	{
 		philo[index].id = index + 1;
 		philo[index].eat_count = 0;
-		philo[index].last_eat_time = 0;
 		philo[index].common = common;
+		philo[index].is_alive = 1;
 		set_fork_mutex(philo, index);
 		index++;
 	}

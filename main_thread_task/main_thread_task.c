@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_thread_task.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 16:42:57 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/19 17:26:28 by seokjyoo         ###   ########.fr       */
+/*   Created: 2023/03/19 13:29:23 by seokjyoo          #+#    #+#             */
+/*   Updated: 2023/03/19 17:37:46 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/philosopher.h"
+#include "../include/philosopher.h"
 
-int	main(int argc, char *argv[])
-{
-	pthread_t		*philos;
-	t_common		*common;
-	t_philo			*philo;
+// void	main_thread_task(t_philo *philo, t_common *common, int num_of_times)
+// {
+// 	if (num_of_times)
+// 	{
 
-	if (check_arg(argc, argv) == 1)
-		return (1);
-	common = set_common(argv);
-	philo = philo_set(common);
-	if (argc == 6)
-		philo_start(philo, common, ft_atoi(argv[5]));
-	else
-		philo_start(philo, common, 0);
-	return (0);
-}
+		
+// 	}
+// 	else
+// 	{
+		
+// 	}
 
-// 1000
-// 1000000
+// }
