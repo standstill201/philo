@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:42:57 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/19 17:26:28 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:02:53 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	main(int argc, char *argv[])
 	if (argc == 6)
 		philo_start(philo, common, ft_atoi(argv[5]));
 	else
-		philo_start(philo, common, 0);
+		philo_start(philo, common, -1);
 	return (0);
 }
-
-// 1000
-// 1000000

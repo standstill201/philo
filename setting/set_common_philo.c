@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:34:41 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/19 17:46:51 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:24:42 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ t_common	*set_common(char **argv)
 	common->time_to_die = ft_atoi(argv[2]);
 	common->time_to_eat = ft_atoi(argv[3]);
 	common->time_to_sleep = ft_atoi(argv[4]);
+	common->is_ended = 0;
 	common->forks = (int *)malloc(sizeof(int) * common->number_of_philo);
 	common->forks_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * common->number_of_philo);
 	common->philos = (t_philo *)malloc(sizeof(t_philo) * common->number_of_philo);
+	common->numbers_ended = (int *)malloc(sizeof(int) * common->number_of_philo);
 	if (argv[5])
 		common->number_of_times = ft_atoi(argv[5]);
 	else
@@ -65,9 +67,9 @@ t_philo	*philo_set(t_common *common)
 		philo[index].id = index + 1;
 		philo[index].eat_count = 0;
 		philo[index].common = common;
-		philo[index].is_alive = 1;
 		set_fork_mutex(philo, index);
 		index++;
 	}
+	philo->common->philos = philo;
 	return (philo);
 }

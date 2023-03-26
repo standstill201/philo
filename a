@@ -1,93 +1,17 @@
-1 has taken a left fork
-1 has taken a right fork
-1 is eating
-3 has taken a left fork
-1 is sleeping
-3 has taken a right fork
-3 is eating
-2 has taken a left fork
-1 is thinking
-3 is sleeping
-2 has taken a right fork
-2 is eating
-1 has taken a left fork
-3 is thinking
-2 is sleeping
-1 has taken a right fork
-1 is eating
-3 has taken a left fork
-2 is thinking
-1 is sleeping
-3 has taken a right fork
-3 is eating
-2 has taken a left fork
-1 is thinking
-3 is sleeping
-2 has taken a right fork
-2 is eating
-1 has taken a left fork
-3 is thinking
-2 is sleeping
-1 has taken a right fork
-1 is eating
-3 has taken a left fork
-2 is thinking
-1 is sleeping
-3 has taken a right fork
-3 is eating
-2 has taken a left fork
-1 is thinking
-3 is sleeping
-2 has taken a right fork
-2 is eating
-1 has taken a left fork
-3 is thinking
-2 is sleeping
-1 has taken a right fork
-1 is eating
-3 has taken a left fork
-2 is thinking
-1 is sleeping
-2 has taken a left fork
-3 has taken a right fork
-3 is eating
-1 is thinking
-3 is sleeping
-2 has taken a right fork
-2 is eating
-1 has taken a left fork
-3 is thinking
-2 is sleeping
-3 has taken a left fork
-1 has taken a right fork
-1 is eating
-2 is thinking
-1 is sleeping
-3 has taken a right fork
-3 is eating
-2 has taken a left fork
-1 is thinking
-3 is sleeping
-2 has taken a right fork
-2 is eating
-1 has taken a left fork
-3 is thinking
-2 is sleeping
-1 has taken a right fork
-1 is eating
-3 has taken a left fork
-2 is thinking
-1 is sleeping
-3 has taken a right fork
-3 is eating
-2 has taken a left fork
-1 is thinking
-!!!!!!!!!!!!!!!!!!
-3 is sleeping
-2 has taken a right fork
-2 is eating
-3 is thinking
-!!!!!!!!!!!!!!!!!!
-2 is sleeping
-2 is thinking
-!!!!!!!!!!!!!!!!!!
+0 1 has taken a fork
+0 1 has taken a fork
+0 1 is eating
+200 1 is sleeping
+200 2 has taken a fork
+200 2 has taken a fork
+200 2 is eating
+250 1 is thinking
+400 2 is sleeping
+400 1 has taken a fork
+400 1 has taken a fork
+400 1 is eating
+450 2 is thinking
+600 1 is sleeping
+600 2 has taken a fork
+600 2 has taken a fork
+600 2 is eating
