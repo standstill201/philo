@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:26:14 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/26 20:16:39 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:45:23 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,54 @@ void	philo_wait(t_philo *philo, int trg)
 	gettimeofday(&now, NULL);
 	if (trg == 1)
 	{
-		while (philo->common->is_ended == 0 && relative_time(now) < philo->common->time_to_eat)
+		while (relative_time(now) < philo->common->time_to_eat)
+		{
+			pthread_mutex_lock(&philo->common->print_m);
+			if (philo->common->is_ended)
+			{
+				pthread_mutex_unlock(&philo->common->print_m);
+				break ;
+			}
 			usleep(50);
+			pthread_mutex_unlock(&philo->common->print_m);
+		}
 	}
 	else
 	{
-		while (philo->common->is_ended == 0 && relative_time(now) < philo->common->time_to_sleep)
+		while (relative_time(now) < philo->common->time_to_sleep)
+		{
+			pthread_mutex_lock(&philo->common->print_m);
+			if (philo->common->is_ended)
+			{
+				pthread_mutex_unlock(&philo->common->print_m);
+				break ;
+			}
 			usleep(50);
+			pthread_mutex_unlock(&philo->common->print_m);
+		}
 	}
 }
 
 int	check_is_alive(t_philo* philo)
 {
+	// int	index;
+
+	// index = 0;
+	// if (philo->common->forks_mutex)
+	// {
+	// 	while (index < philo->common->number_of_philo)
+	// 	{
+	// 		pthread_mutex_destroy(&philo->common->forks_mutex[index]);
+	// 		printf("index: %d\n",index);
+	// 		index++;
+	// 	}
+	// 	free(philo->common->forks_mutex);
+	// }
 	pthread_mutex_lock(&philo->common->print_m);
 	if (philo->common->is_ended == 1)
 	{
+		// pthread_mutex_unlock(philo->left_fork_mutex);
+		// pthread_mutex_unlock(philo->right_fork_mutex);
 		pthread_mutex_unlock(&philo->common->print_m);
 		return (0);
 	}
@@ -97,12 +130,12 @@ void	philo_eat_right(t_philo *philo)
 		if (philo->common->is_ended == 0)
 			printf("%03ld %d is eating\n", relative_time(philo->common->start_time), philo->id);
 		pthread_mutex_unlock(&philo->common->print_m);
+		gettimeofday(&philo->last_eat_time, NULL);
 	}
 	philo->eat_count++;
 	philo_wait(philo, 1);
 	pthread_mutex_unlock(philo->right_fork_mutex);
 	pthread_mutex_unlock(philo->left_fork_mutex);
-	gettimeofday(&philo->last_eat_time, NULL);
 }
 
 void	philo_sleep(t_philo *philo)
@@ -132,9 +165,11 @@ void	set_one_to_end_arr(t_common *common)
 	int	index;
 
 	index = 0;
+	pthread_mutex_lock(&common->print_m);
 	while (common->numbers_ended[index] == 1)
 		index++;
 	common->numbers_ended[index] = 1;
+	pthread_mutex_unlock(&common->print_m);
 }
 void	*philo_action(void *arg)
 {
