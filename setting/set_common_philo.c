@@ -6,7 +6,7 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:34:41 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/26 17:24:42 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:49:57 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ t_common	*set_common(char **argv)
 	common->time_to_sleep = ft_atoi(argv[4]);
 	common->is_ended = 0;
 	common->forks = (int *)malloc(sizeof(int) * common->number_of_philo);
-	common->forks_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * common->number_of_philo);
-	common->philos = (t_philo *)malloc(sizeof(t_philo) * common->number_of_philo);
-	common->numbers_ended = (int *)malloc(sizeof(int) * common->number_of_philo);
+	common->forks_mutex = (pthread_mutex_t *)
+		malloc(sizeof(pthread_mutex_t) * common->number_of_philo);
 	if (argv[5])
 		common->number_of_times = ft_atoi(argv[5]);
 	else
@@ -46,12 +45,15 @@ void	set_fork_mutex(t_philo *philo, int index)
 	if (index == 0)
 	{
 		philo[index].right_fork_mutex = &philo[index].common->forks_mutex[0];
-		philo[index].left_fork_mutex = &philo[index].common->forks_mutex[philo[index].common->number_of_philo - 1];
+		philo[index].left_fork_mutex = &philo[index].common
+			->forks_mutex[philo[index].common->number_of_philo - 1];
 	}
 	else
 	{
-		philo[index].right_fork_mutex = &philo[index].common->forks_mutex[index];
-		philo[index].left_fork_mutex = &philo[index].common->forks_mutex[index - 1];
+		philo[index].right_fork_mutex = &philo
+		[index].common->forks_mutex[index];
+		philo[index].left_fork_mutex = &philo
+		[index].common->forks_mutex[index - 1];
 	}
 }
 

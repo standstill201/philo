@@ -6,11 +6,11 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:23:35 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/17 14:06:42 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:48:29 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/philosopher.h"
+#include "../include/philosopher.h"
 
 int	check_arg(int argc, char *argv[])
 {

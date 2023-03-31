@@ -6,7 +6,7 @@
 #    By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 16:43:52 by seokjyoo          #+#    #+#              #
-#    Updated: 2023/03/30 13:43:11 by seokjyoo         ###   ########.fr        #
+#    Updated: 2023/03/31 18:37:58 by seokjyoo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS =  -fsanitize=thread# -Wall -Wextra -Werror
+CFLAGS = #-fsanitize=leak# -Wall -Wextra -Werror
 
 RM = rm -rf
 

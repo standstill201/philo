@@ -6,17 +6,17 @@
 /*   By: seokjyoo <seokjyoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:57:47 by seokjyoo          #+#    #+#             */
-/*   Updated: 2023/03/26 19:01:27 by seokjyoo         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:46:14 by seokjyoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct s_philo t_philo;
-typedef struct s_common t_common;
+typedef struct s_philo	t_philo;
+typedef struct s_common	t_common;
 
-typedef struct	s_common
+typedef struct s_common
 {
 	int				number_of_philo;
 	int				time_to_die;
@@ -25,7 +25,6 @@ typedef struct	s_common
 	int				number_of_times;
 	int				is_ended;
 	int				*forks;
-	int				*numbers_ended;
 	t_philo			*philos;
 	pthread_mutex_t	init_m;
 	pthread_mutex_t	print_m;
@@ -33,7 +32,7 @@ typedef struct	s_common
 	struct timeval	start_time;
 }	t_common;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				eat_count;
